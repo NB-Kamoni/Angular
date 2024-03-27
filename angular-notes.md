@@ -49,3 +49,94 @@ use the command
 ```
 ng serve
 ```
+
+## Angular UI Design
+
+# Genesis
+* Install Angular material: material.angular.io
+On terminal
+```
+ng add @angular/material
+```
+* Install layout components
+on terminal
+
+```
+ng generate component HeaderComponent
+ng generate component SidebarComponent
+ng generate component ContentComponent
+ng generate component FooterComponent
+```
+# Design HTML structure for the components above
+in header.component.html
+
+```htm
+<mat-toolbar color="primary">Dashboard Header</mat-toolbar>
+```
+in sidebar.component.html
+
+```htm
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>Sidebar Content</mat-sidenav>
+</mat-sidenav-container>
+```
+in footer.component.html
+
+```htm
+<mat-toolbar color="primary">Dashboard Footer</mat-toolbar>
+```
+# Arrange the components above in the parent component
+Eg home page in page-one.component.html: The names eg app-header should be confirmed in header.component.ts>>selector
+
+```htm
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<mat-sidenav-content>
+  <app-content></app-content>
+</mat-sidenav-content>
+<app-footer></app-footer>
+```
+# Import angular material module
+In the angular module file (app.module.ts)
+```javascript
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ContentComponent } from './content/content.component';
+import { FooterComponent } from './footer/footer.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SidebarComponent,
+    ContentComponent,
+    FooterComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatCardModule
+    // Other Angular Material modules as needed for other components
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
